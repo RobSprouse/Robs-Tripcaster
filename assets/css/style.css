@@ -59,6 +59,14 @@ nav {
     /* align-items: center; */
 }
 
+.currentDay {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 .forecastCards {
     display: flex;
     flex-direction: row;
