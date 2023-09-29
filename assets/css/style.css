@@ -14,7 +14,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    color: white;
+    color: #ffffff;
     list-style: none;
 }
 
@@ -27,6 +27,7 @@ body {
     background-color: black;
 }
 
+/* COMMENT: Header */
 header {
     display: flex;
     background-color: grey;
@@ -35,7 +36,8 @@ header {
     justify-content: center;
 }
 
-nav {
+/* COMMENT: City Search and History */
+.citySearch {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,21 +46,39 @@ nav {
     border: 1px solid white;
     margin: 5em 0 0 0;
     min-height: 50em;
-    max-width: 13em;
     padding: 0.5em;
+    min-width: 15em;
 }
 
+input[type=text] {
+    min-width: 12.65em;
+}
+
+.citySearch h4 {
+    text-decoration: underline;
+}
+
+/* COMMENT: Weather Display Area */
 .weatherCards {
     display: flex;
     flex-direction: column;
     background-color: grey;
     border: 1px solid white;
-    margin: 0 0 0 10em;
+    margin: 0 0 0 15em;
     min-height: 50em;
     padding: 0.5em;
-    /* align-items: center; */
 }
 
+/* COMMENT: Current Conditions */
+.currentDay {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+/* COMMENT: 5-day Weather Forecast Section */
 .forecastCards {
     display: flex;
     flex-direction: row;
@@ -66,7 +86,7 @@ nav {
     justify-content: space-evenly;
 }
 
-
+/* COMMENT: Individual Forecast Cards */
 .dayForecast {
     display: flex;
     margin: 0.5em 0.5em;
@@ -83,6 +103,7 @@ nav {
     justify-content: center;
 }
 
+/* COMMENT: Footer */
 footer {
     display: flex;
     background-color: rgb(88, 88, 88);
