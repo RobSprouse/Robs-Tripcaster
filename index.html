@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- COMMENT: Meta Data -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- COMMENT: Linked Style Sheets -->
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Vacation Forecaster</title>
 </head>
 
 <body>
+    <!-- COMMENT: Header -->
     <header>
         <h1>Vacation Forecaster</h1>
     </header>
-
-    <nav>
+    
+    <!-- COMMENT: City Search and History -->
+    <section class="citySearch">
         <h3>
             Search for a City:
         </h3>
-    </nav>
+        <form>
+            <input type="text" name="city" placeholder="City Name, State, and Country">
+            </input type="submit" value="Search">
+        </form>
+        <h4 id="searchHistory">
+            History
+        </h4>
+    </section>
 
+    <!-- COMMENT: Weather Display Area -->
     <main class="weatherCards">
 
-        <div class="first">
+        <!-- COMMENT: Current Conditions -->
+        <div class="currentDay">
             <h4>
                 *Current City Name goes Here with date*
             </h4>
+            <b>
+
+            </b>
             <i>
                 *Icon*
             </i>
@@ -39,8 +56,10 @@
             </ul>
         </div>
 
+        <!-- COMMENT: 5-day Weather Forecast Section-->
         <div class="forecastCards">
 
+            <!-- COMMENT: Idividual Forecast Cards -->
             <div class="dayForecast">
                 <h4>
                     *1st day*
@@ -57,6 +76,7 @@
                     </li>
                 </ul>
             </div>
+
             <div class="dayForecast">
                 <h4>
                     *2nd day*
@@ -129,10 +149,13 @@
 
     </main>
 
+    <!-- COMMENT: Footer -->
     <footer>
         footer
     </footer>
 
+    <!-- COMMENT: JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
