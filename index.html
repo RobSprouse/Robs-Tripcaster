@@ -18,19 +18,18 @@
 
     <!-- COMMENT: Header with City Search-->
     <header>
-        <h1>Vacation Forecaster</h1>
+        <h1>Tripcaster</h1>
         <p id="instructionsP">
-            <span id="instructionsSpan">Directions:</span> Enter the city name, state code (only for the US) and country
-            code divided by commas. Utilize the ISO 3166 country codes when entering a country code. They can be found
-            at the following, unaffiliated website.
+            <span id="instructionsSpan">Directions:</span> Enter a city name or a city name, state code (only for the
+            US), and country code divided by commas. Utilize the ISO 3166 country codes when entering a country code.
+            They can be found at the following, unaffiliated website.
         </p>
         <p id="ISOwebsite">
             <a id="countryCodes" href="https://www.iban.com/country-codes">https://www.iban.com/country-codes.</a>
         </p>
 
         <section class="citySearch">
-            <h3>
-                Search for a City:
+            <h3>Search for a City:
             </h3>
             <form id="cityInput">
                 <input type="text" name="city" placeholder="City Name" id="cityName">
@@ -64,16 +63,16 @@
 
         <!-- COMMENT: City Search History -->
         <section class="cityHistory">
-            <h4 class="underline">
-                History
-            </h4>
+            <h2 class="underline">
+                Search History
+            </h2>
         </section>
 
         <!-- COMMENT: Weather Display Area -->
         <section class="weatherCards">
 
             <!-- COMMENT: Current Condition Card -->
-            <section id="currentDayDiv">
+            <section class="currentDayDiv">
                 <div class="currentDay">
                     <h4>
                         *Current City Name goes Here with date*
