@@ -138,14 +138,20 @@ main {
     min-width: 8em;
     min-height: 10em;
     margin: 0.5em 0.5em;
-    background-color: rgb(73, 73, 73);
+    background-color: rgb(255, 255, 255);
     padding: 0.5em;
     justify-content: space-between;
 }
 
-.currentDay h4, .currentDay i {
+.currentDay h4, .currentDay img {
     display: flex;
     justify-content: center;
+}
+
+.currentDay img {
+    height: 10em;
+    width: 10em;
+
 }
 
 /* COMMENT: 5-day Weather Forecast Section */
