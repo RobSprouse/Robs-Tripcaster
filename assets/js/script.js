@@ -1,30 +1,45 @@
+let apiKey = "ae8a9c52dbc61de25a46b1c84484bee2";
 
+let lat = "";
+let lon = "";
 
+$("form").on("submit", function (event) {
+  event.preventDefault();
+  $("#invalidEntry").text("");
+  let cityName = $("#cityName").val();
+  let getLatLonURL =
+    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    cityName +
+    "&appid=" +
+    apiKey;
 
-
-
-// fetch (request) =api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
-
-http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-
-// fetch("http://api.openweathermap.org/data/2.5/forecast?lat=37.5385087&lon=-77.43428&appid=ae8a9c52dbc61de25a46b1c84484bee2")
-//   .then((response) => response.json())
-//   .then((data) => console.log(data))
-//   .catch((error) => console.error("Error:", error));
-
-//   fetch("http://api.openweathermap.org/geo/1.0/direct?q=Richmond,VA,US&appid=ae8a9c52dbc61de25a46b1c84484bee2")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     const lat = data[0].lat;
-//     const lon = data[0].lon;
-//     const location = 'Richmond,VA,US';
-//     localStorage.setItem(location + '_latitude', lat);
-//     localStorage.setItem(location + '_longitude', lon);
-//     console.log(`Latitude: ${lat}, Longitude: ${lon}`);
-//   })
-//   .catch((error) => console.error("Error:", error));
-
-
-//   37.5385087
-//   Latitude: 37.5385087, Longitude: -77.43428
+  fetch(getLatLonURL)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("HTTP error " + response.status);
+        // COMMENT: Append text if there was a failed response.
+        $("#invalidEntry").text(
+          "The response from the weather api failed. Please try again."
+        );
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.length === 0) {
+        // COMMENT: Append text if there is a problem with user input
+        $("#invalidEntry").text(
+          "The weather data for the city you're searching for is not in the database of available cities, the input format was incorrect, is spelled incorrectly, or is not a valid city. Please, try again."
+        );
+      } else {
+        console.log(data);
+      }
+    })
+    .catch((error) => {
+      console.error("", error);
+      if (error.message === "HTTP error 400") {
+        $("#invalidEntry").text(
+          "No text was entered or the fetching of the data failed. Please try again"
+        );
+      }
+    });
+});
