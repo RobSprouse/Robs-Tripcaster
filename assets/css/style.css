@@ -1,190 +1,190 @@
 /* COMMENT:Root and Initial Elements */
 :root {
-    --Header-footer-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
-    --Body-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
+     --Header-footer-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
+     --Body-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
 }
 
 @media screen {
-    body {
-        margin: 5% 5%;
-    }
+     body {
+          margin: 5% 5%;
+     }
 }
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    color: #413a3a;
-    list-style: none;
+     box-sizing: border-box;
+     padding: 0;
+     margin: 0;
+     color: #413a3a;
+     list-style: none;
 }
 
 .underline {
-    text-decoration: underline;
+     text-decoration: underline;
 }
 
 /* COMMENT: Body Section*/
 body {
-    display: flex;
-    flex-direction: column;
-    font-family: var(--Body-font);
-    border: 1px solid white;
-    background-color: black;
+     display: flex;
+     flex-direction: column;
+     font-family: var(--Body-font);
+     border: 1px solid white;
+     background-color: black;
 }
 
 /* COMMENT: Header with City Search */
 header {
-    display: flex;
-    flex-direction: column;
-    background-color: grey;
-    border: 1px solid white;
-    align-items: center;
+     display: flex;
+     flex-direction: column;
+     background-color: grey;
+     border: 1px solid white;
+     align-items: center;
 
 }
 
 #instructionsP {
-    text-align: justify;
-    padding: 0 3em 1em 3em;
+     text-align: justify;
+     padding: 0 3em 1em 3em;
 }
 
 #instructionsSpan {
-    color: blue;
-    font-weight: bold;
-    font-size: 20px;
+     color: blue;
+     font-weight: bold;
+     font-size: 20px;
 }
 
 header section {
-    padding: 0 3em 1em 3em;
+     padding: 0 3em 1em 3em;
 }
 
 #ISOwebsite {
-    padding:   1em 0 1em 0;
-} 
+     padding: 1em 0 1em 0;
+}
 
 #invalidEntry {
-    padding:  0.5em 0 0.5em 0;
+     padding: 0.5em 0 0.5em 0;
 }
 
 
 .citySearch {
-    display: flex;
-    flex: 1 0 auto;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    padding: 1em 0 0.5em 0;
+     display: flex;
+     flex: 1 0 auto;
+     flex-direction: row;
+     align-items: center;
+     text-align: center;
+     padding: 1em 0 0.5em 0;
 }
 
 #cityInput input[type=text] {
-    max-width: 12em;
-    margin-left: 0.2em;
+     max-width: 12em;
+     margin-left: 0.2em;
 }
 
 #invalidEntry {
-    color: rgb(0, 255, 13);
-    font-size: 20px;
-    font-weight: 900;
-    text-align: justify;
-    
+     color: rgb(0, 255, 13);
+     font-size: 20px;
+     font-weight: 900;
+     text-align: justify;
+
 }
 
 header ul {
-    padding: 0 0 1em 0;
+     padding: 0 0 1em 0;
 
 }
 
 
 /* COMMENT: Main Section */
 main {
-    display: flex;
-    flex-direction: row;
+     display: flex;
+     flex-direction: row;
 }
 
 /* COMMENT: City Search History */
 
 .cityHistory {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 20%;
-    align-items: center;
-    background-color: rgb(88, 88, 88);
-    border: 1px solid white;
-    padding: 0.5em;
-    min-width: 8em;
+     display: flex;
+     flex-direction: column;
+     flex-basis: 20%;
+     align-items: center;
+     background-color: rgb(88, 88, 88);
+     border: 1px solid white;
+     padding: 0.5em;
+     min-width: 8em;
 }
 
 /* COMMENT: Weather Display Area */
 .weatherCards {
-    display: flex;
-    flex: 1 1 100%;
-    flex-direction: column;
-    background-color: grey;
-    border: 1px solid white;
-    min-height: 50em;
-    
+     display: flex;
+     flex: 1 1 100%;
+     flex-direction: column;
+     background-color: grey;
+     border: 1px solid white;
+     min-height: 50em;
+
 
 }
 
 /* COMMENT: Current Condition Card and div*/
 .currentDayDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
 
 .currentDay {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
-    min-width: 8em;
-    min-height: 10em;
-    margin: 0.5em 0.5em;
-    background-color: rgb(255, 255, 255);
-    padding: 0.5em;
-    justify-content: space-between;
+     display: flex;
+     flex-direction: column;
+     flex: 0 0 auto;
+     min-width: 8em;
+     min-height: 10em;
+     margin: 0.5em 0.5em;
+     background-color: rgb(255, 255, 255);
+     padding: 0.5em;
+     justify-content: space-between;
 }
 
 .currentDay h4, .currentDay img {
-    display: flex;
-    justify-content: center;
+     display: flex;
+     justify-content: center;
 }
 
 .currentDay img {
-    height: 10em;
-    width: 10em;
+     height: 10em;
+     width: 10em;
 
 }
 
 /* COMMENT: 5-day Weather Forecast Section */
 .forecastCards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-around;
 }
 
 /* COMMENT: Individual Forecast Cards */
 .dayForecast {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
-    min-width: 8em;
-    min-height: 10em;
-    margin: 0.5em 0.5em;
-    background-color: rgb(73, 73, 73);
-    padding: 0.5em;
-    justify-content: space-between;
+     display: flex;
+     flex-direction: column;
+     flex: 0 0 auto;
+     min-width: 8em;
+     min-height: 10em;
+     margin: 0.5em 0.5em;
+     background-color: rgb(73, 73, 73);
+     padding: 0.5em;
+     justify-content: space-between;
 
 }
 
 .dayForecast h4, .dayForecast i {
-    display: flex;
-    justify-content: center;
+     display: flex;
+     justify-content: center;
 }
 
 /* COMMENT: Footer */
 footer {
-    display: flex;
-    background-color: rgb(88, 88, 88);
-    border: 1px solid white;
-    min-height: 4em;
+     display: flex;
+     background-color: rgb(88, 88, 88);
+     border: 1px solid white;
+     min-height: 4em;
 }
