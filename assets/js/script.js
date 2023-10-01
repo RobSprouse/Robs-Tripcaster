@@ -23,15 +23,12 @@ $("form").on("submit", function (event) {
           $("#invalidEntry").text("Please follow the instructions and enter a city name.");
           return;
      }
-     let getLatLonURL =
-          "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=" + apiKey; // api to get lat and lon
+     let getLatLonURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`; // api to get lat and lon
      fetch(getLatLonURL) // fetches lon and lat
           .then((response) => {
                if (!response.ok) {
                     $("#invalidEntry").show();
-                    $("#invalidEntry").text(
-                         "The response from the weather api failed. Please try again."
-                    );
+                    $("#invalidEntry").text("The response from the weather api failed. Please try again.");
                     throw new Error("HTTP error " + response.status);
                }
                return response.json();
@@ -46,26 +43,10 @@ $("form").on("submit", function (event) {
                } else {
                     console.log(cityData);
                     let city = cityData[0];
-                    let cityNameStateCountry = city.name + ", " + city.state + " " + city.country;
-
-                    let getCurrentWeatherURL =
-                         "https://api.openweathermap.org/data/2.5/weather?lat=" +
-                         city.lat +
-                         "&lon=" +
-                         city.lon +
-                         "&appid=" +
-                         apiKey +
-                         "&units=imperial";
+                    let cityNameStateCountry = `${city.name}, ${city.state} ${city.country}`;
+                    let getCurrentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
                     console.log(getCurrentWeatherURL);
-
-                    let getForecastedWeatherURL =
-                         "http://api.openweathermap.org/data/2.5/forecast?lat=" +
-                         city.lat +
-                         "&lon=" +
-                         city.lon +
-                         "&appid=" +
-                         apiKey +
-                         "&units=imperial";
+                    let getForecastedWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
                     console.log(getForecastedWeatherURL);
 
                     fetch(getCurrentWeatherURL)
@@ -80,51 +61,52 @@ $("form").on("submit", function (event) {
                               }
                               return response.json();
                          })
-
-                         .then((currentWeatherData) => {
-                              let currentWeather = currentWeatherData[0];
-
+                         .then((currentWeather) => {
+                              console.log(currentWeather);
+                              let recordedWeatherTime = currentWeather.dt;
+                              let currentTemp = currentWeather.main.temp;
+                              let currentHumidity = currentWeather.main.humidity;
+                              let weatherIcon = `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`;
+                              $(".currentDay img").attr("src", weatherIcon);
                               $(".currentDay h4").text(cityNameStateCountry);
-
-                              $(".currentDay h3").text(new Date());
-                              //    console.log(data.list[0].weather[0].icon);
-                              //    let weatherIcon =
-                              //        "https://openweathermap.org/img/wn/" +
-                              //        data.list[0].weather[0].icon +
-                              //        "@2x.png";
-                              //    console.log(weatherIcon);
-                              //    $(".currentDay img").attr("src", weatherIcon);
+                              $(".currentDay h3").text(unixToDate(recordedWeatherTime));
+                              $("#currentTemp").html("Temperature: " + currentTemp + " &deg;F");
+                              $("#currentHumidity").text("Humidity: " + currentHumidity + " %");
                               $(".currentDayDiv, .forecastCards").show();
                          });
 
-                         // TODO: add this to display the unix date to the appropriate dates   let unixTime = forecastedWeather[path to unix date]
+                    fetch(getForecastedWeatherURL)
+                         .then((response) => {
+                              if (!response.ok) {
+                                   throw new Error("HTTP error " + response.status);
+                                   // COMMENT: Append text if there was a failed response.
+                                   $("#invalidEntry").show();
+                                   $("#invalidEntry").text(
+                                        "The response from the weather api failed. Please try again."
+                                   );
+                              }
+                              return response.json();
+                         })
+                         .then((forecastedWeather) => {
+                              console.log(forecastedWeather);
+                              
 
-                    // fetch(getWeatherURL)
-                    //     .then((response) => {
-                    //         if (!response.ok) {
-                    //             throw new Error("HTTP error " + response.status);
-                    //             // COMMENT: Append text if there was a failed response.
-                    //             $("#invalidEntry").show();
-                    //             $("#invalidEntry").text(
-                    //                 "The response from the weather api failed. Please try again."
-                    //             );
-                    //         }
-                    //         return response.json();
-                    //     })
-                    //     .then((data) => {
-                    //         console.log(data.list);
-                    //         $(".currentDayDiv, .forecastCards").show();
-                    //         $(".currentDay h4").text(cityNameStateCountry);
-                    //         $(".currentDay h3").text(data.list[0].dt_txt);
-                    //         console.log(data.list[0].weather[0].icon);
-                    //         let weatherIcon =
-                    //             "https://openweathermap.org/img/wn/" +
-                    //             data.list[0].weather[0].icon +
-                    //             "@2x.png";
-                    //         console.log(weatherIcon);
-                    //         $(".currentDay img").attr("src", weatherIcon);
-                    //     });
+                          });
+                          
                }
           });
 });
 
+//     .then((data) => {
+//         console.log(data.list);
+//         $(".currentDayDiv, .forecastCards").show();
+//         $(".currentDay h4").text(cityNameStateCountry);
+//         $(".currentDay h3").text(data.list[0].dt_txt);
+//         console.log(data.list[0].weather[0].icon);
+//         let weatherIcon =
+//             "https://openweathermap.org/img/wn/" +
+//             data.list[0].weather[0].icon +
+//             "@2x.png";
+//         console.log(weatherIcon);
+//         $(".currentDay img").attr("src", weatherIcon);
+//     });

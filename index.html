@@ -22,12 +22,14 @@
           <p id="instructionsP">
                <span id="instructionsSpan">Directions:</span> Enter a city name or a city name, state code (only for the
                US), and country code divided by commas. Be sure to check the spelling. The weather api being utilized
-               may attempt to give you data for a city you didn't intend to search for if it's spelled or inputted incorrectly.
+               may attempt to give you data for a city you didn't intend to search for if it's spelled or inputted
+               incorrectly.
                Utilize the ISO 3166 country codes when entering a country code.
                They can be found at the following, unaffiliated website.
           </p>
           <p id="ISOwebsite">
-               <a id="countryCodes" href="https://www.iban.com/country-codes">https://www.iban.com/country-codes.</a>
+               <a id="countryCodes" href="https://www.iban.com/country-codes"
+                    target="_blank">https://www.iban.com/country-codes.</a>
           </p>
 
           <section class="citySearch">
@@ -78,16 +80,16 @@
                     <div class="currentDay">
                          <img alt="Icon"></img>
                          <h4>
-
+                              City Name, State Country
                          </h4>
                          <h3>
-
+                              Date
                          </h3>
                          <ul>
-                              <li>
+                              <li id="currentTemp">
                                    Most recent recorded temperature:
                               </li>
-                              <li>
+                              <li id="currentHumidity">
                                    Humidity:
                               </li>
                          </ul>
