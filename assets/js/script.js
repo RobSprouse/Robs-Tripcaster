@@ -23,7 +23,7 @@ $("form").on("submit", function (event) {
           $("#invalidEntry").text("Please follow the instructions and enter a city name.");
           return;
      }
-     let getLatLonURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`; // api to get lat and lon
+     let getLatLonURL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`; // api to get lat and lon
      fetch(getLatLonURL) // fetches lon and lat
           .then((response) => {
                if (!response.ok) {
@@ -46,7 +46,7 @@ $("form").on("submit", function (event) {
                     let cityNameStateCountry = `${city.name}${city.state ? ", " + city.state : ""} ${city.country}`;
                     let getCurrentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
                     console.log(getCurrentWeatherURL);
-                    let getForecastedWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
+                    let getForecastedWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
                     console.log(getForecastedWeatherURL);
 
                     fetch(getCurrentWeatherURL)
@@ -116,3 +116,4 @@ $("form").on("submit", function (event) {
                }
           });
 });
+
