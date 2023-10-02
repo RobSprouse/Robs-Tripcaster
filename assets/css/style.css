@@ -1,112 +1,190 @@
 /* COMMENT:Root and Initial Elements */
 :root {
-    --Header-footer-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
-    --Body-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
+     --Header-footer-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
+     --Body-font: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
 }
 
 @media screen {
-    body {
-        margin: 5% 5%;
-    }
+     body {
+          margin: 5% 5%;
+     }
 }
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    color: #ffffff;
-    list-style: none;
+     box-sizing: border-box;
+     padding: 0;
+     margin: 0;
+     color: #413a3a;
+     list-style: none;
 }
 
-/* COMMENT:Body */
+.underline {
+     text-decoration: underline;
+}
+
+/* COMMENT: Body Section*/
 body {
-    display: flex;
-    flex-direction: column;
-    font-family: var(--Body-font);
-    border: 1px solid white;
-    background-color: black;
+     display: flex;
+     flex-direction: column;
+     font-family: var(--Body-font);
+     border: 1px solid white;
+     background-color: black;
 }
 
-/* COMMENT: Header */
+/* COMMENT: Header with City Search */
 header {
-    display: flex;
-    background-color: grey;
-    border: 1px solid white;
-    max-height: 5em;
-    justify-content: center;
+     display: flex;
+     flex-direction: column;
+     background-color: grey;
+     border: 1px solid white;
+     align-items: center;
+
 }
 
-/* COMMENT: City Search and History */
+#instructionsP {
+     text-align: justify;
+     padding: 0 3em 1em 3em;
+}
+
+#instructionsSpan {
+     color: blue;
+     font-weight: bold;
+     font-size: 20px;
+}
+
+header section {
+     padding: 0 3em 1em 3em;
+}
+
+#ISOwebsite {
+     padding: 1em 0 1em 0;
+}
+
+#invalidEntry {
+     padding: 0.5em 0 0.5em 0;
+}
+
+
 .citySearch {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    background-color: rgb(88, 88, 88);
-    border: 1px solid white;
-    margin: 5em 0 0 0;
-    min-height: 50em;
-    padding: 0.5em;
-    min-width: 15em;
+     display: flex;
+     flex: 1 0 auto;
+     flex-direction: row;
+     align-items: center;
+     text-align: center;
+     padding: 1em 0 0.5em 0;
 }
 
-input[type=text] {
-    min-width: 12.65em;
+#cityInput input[type=text] {
+     max-width: 12em;
+     margin-left: 0.2em;
 }
 
-.citySearch h4 {
-    text-decoration: underline;
+#invalidEntry {
+     color: rgb(0, 255, 13);
+     font-size: 20px;
+     font-weight: 900;
+     text-align: justify;
+
+}
+
+header ul {
+     padding: 0 0 1em 0;
+
+}
+
+
+/* COMMENT: Main Section */
+main {
+     display: flex;
+     flex-direction: row;
+}
+
+/* COMMENT: City Search History */
+
+.cityHistory {
+     display: flex;
+     flex-direction: column;
+     flex-basis: 20%;
+     align-items: center;
+     background-color: rgb(88, 88, 88);
+     border: 1px solid white;
+     padding: 0.5em;
+     min-width: 8em;
 }
 
 /* COMMENT: Weather Display Area */
 .weatherCards {
-    display: flex;
-    flex-direction: column;
-    background-color: grey;
-    border: 1px solid white;
-    margin: 0 0 0 15em;
-    min-height: 50em;
-    padding: 0.5em;
+     display: flex;
+     flex: 1 1 100%;
+     flex-direction: column;
+     background-color: grey;
+     border: 1px solid white;
+     min-height: 50em;
+
+
 }
 
-/* COMMENT: Current Conditions */
+/* COMMENT: Current Condition Card and div*/
+.currentDayDiv {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
 .currentDay {
-    display: flex;
-    flex-basis: 100%;
-    flex-direction: column;
-    align-items: center;
+     display: flex;
+     flex-direction: column;
+     flex: 0 0 auto;
+     min-width: 8em;
+     min-height: 10em;
+     margin: 0.5em 0.5em;
+     background-color: rgb(255, 255, 255);
+     padding: 0.5em;
+     justify-content: space-between;
+}
+
+.currentDay h4, .currentDay img {
+     display: flex;
+     justify-content: center;
+}
+
+.currentDay img {
+     height: 10em;
+     width: 10em;
 
 }
 
 /* COMMENT: 5-day Weather Forecast Section */
 .forecastCards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-around;
 }
 
 /* COMMENT: Individual Forecast Cards */
 .dayForecast {
-    display: flex;
-    margin: 0.5em 0.5em;
-    min-width: 10em;
-    max-width: 6em;
-    min-height: 10em;
-    background-color: rgb(73, 73, 73);
-    flex-direction: column;
-    padding: 0.5em;
+     display: flex;
+     flex-direction: column;
+     flex: 0 0 auto;
+     min-width: 8em;
+     min-height: 10em;
+     margin: 0.5em 0.5em;
+     background-color: rgb(73, 73, 73);
+     padding: 0.5em;
+     justify-content: space-between;
+
 }
 
 .dayForecast h4, .dayForecast i {
-    display: flex;
-    justify-content: center;
+     display: flex;
+     justify-content: center;
 }
 
 /* COMMENT: Footer */
 footer {
-    display: flex;
-    background-color: rgb(88, 88, 88);
-    border: 1px solid white;
-    min-height: 4em;
+     display: flex;
+     background-color: rgb(88, 88, 88);
+     border: 1px solid white;
+     min-height: 4em;
 }

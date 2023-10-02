@@ -4,159 +4,185 @@
 <!-- COMMENT: Meta Data -->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- COMMENT: Linked Style Sheets -->
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Vacation Forecaster</title>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- COMMENT: Linked Style Sheets -->
+     <link rel="stylesheet" href="assets/css/normalize.css">
+     <link rel="stylesheet" href="assets/css/style.css">
+     <title>Vacation Forecaster</title>
 </head>
 
+<!-- COMMENT: Body Section -->
+
 <body>
-    <!-- COMMENT: Header -->
-    <header>
-        <h1>Vacation Forecaster</h1>
-    </header>
-    
-    <!-- COMMENT: City Search and History -->
-    <section class="citySearch">
-        <h3>
-            Search for a City:
-        </h3>
-        <form>
-            <input type="text" name="city" placeholder="City Name, State, and Country">
-            </input type="submit" value="Search">
-        </form>
-        <h4 id="searchHistory">
-            History
-        </h4>
-    </section>
 
-    <!-- COMMENT: Weather Display Area -->
-    <main class="weatherCards">
+     <!-- COMMENT: Header with City Search-->
+     <header>
+          <h1>Tripcaster</h1>
+          <p id="instructionsP">
+               <span id="instructionsSpan">Directions:</span> Enter a city name or a city name, state code (only for the
+               US), and country code divided by commas. Be sure to check the spelling. The weather api being utilized
+               may attempt to give you data for a city you didn't intend to search for if it's spelled or inputted
+               incorrectly.
+               Utilize the ISO 3166 country codes when entering a country code.
+               They can be found at the following, unaffiliated website.
+          </p>
+          <p id="ISOwebsite">
+               <a id="countryCodes" href="https://www.iban.com/country-codes"
+                    target="_blank">https://www.iban.com/country-codes.</a>
+          </p>
 
-        <!-- COMMENT: Current Conditions -->
-        <div class="currentDay">
-            <h4>
-                *Current City Name goes Here with date*
-            </h4>
-            <b>
+          <section class="citySearch">
+               <h3>Search for a City:
+               </h3>
+               <form id="cityInput">
+                    <input type="text" name="city" placeholder="City Name" id="cityName">
+                    <input type="submit" value="Search">
+               </form>
+          </section>
+          <p id="invalidEntry"></p>
 
-            </b>
-            <i>
-                *Icon*
-            </i>
-            <ul>
-                <li>
-                    Current Temperature:
-                </li>
-                <li>
-                    Humidity:
-                </li>
-            </ul>
-        </div>
+          <p class="underline">
+               Example Searches:
+          </p>
+          <ul>
+               <li>
+                    Richmond
+               </li>
+               <li>
+                    London, KY, US
+               </li>
+               <li>
+                    London, GB
+               </li>
+          </ul>
 
-        <!-- COMMENT: 5-day Weather Forecast Section-->
-        <div class="forecastCards">
+          <!-- COMMENT: Appended text location regarding user input or bad status  -->
 
-            <!-- COMMENT: Idividual Forecast Cards -->
-            <div class="dayForecast">
-                <h4>
-                    *1st day*
-                </h4>
-                <i>
-                    *Icon*
-                </i>
-                <ul>
-                    <li>
-                        Temp:
-                    </li>
-                    <li>
-                        Humidity:
-                    </li>
-                </ul>
-            </div>
 
-            <div class="dayForecast">
-                <h4>
-                    *2nd day*
-                </h4>
-                <i>
-                    *Icon*
-                </i>
-                <ul>
-                    <li>
-                        Temp:
-                    </li>
-                    <li>
-                        Humidity:
-                    </li>
-                </ul>
-            </div>
+     </header>
 
-            <div class="dayForecast">
-                <h4>
-                    *3rd day*
-                </h4>
-                <i>
-                    *Icon*
-                </i>
-                <ul>
-                    <li>
-                        Temp:
-                    </li>
-                    <li>
-                        Humidity
-                    </li>
-                </ul>
-            </div>
+     <!-- COMMENT: Main Section-->
+     <main>
 
-            <div class="dayForecast">
-                <h4>
-                    *4th day*
-                </h4>
-                <i>
-                    *Icon*
-                </i>
-                <ul>
-                    <li>
-                        Temp:
-                    </li>
-                    <li>
-                        Humidity:
-                    </li>
-                </ul>
-            </div>
+          <!-- COMMENT: City Search History -->
+          <section class="cityHistory">
+               <h2 class="underline">
+                    Search History
+               </h2>
+          </section>
 
-            <div class="dayForecast">
-                <h4>
-                    *5th day*
-                </h4>
-                <i>
-                    *Icon*
-                </i>
-                <ul>
-                    <li>
-                        Temp:
-                    </li>
-                    <li>
-                        Humidity:
-                    </li>
-                </ul>
-            </div>
+          <!-- COMMENT: Weather Display Area -->
+          <section class="weatherCards">
 
-        </div>
+               <!-- COMMENT: Current Condition Card -->
+               <section class="currentDayDiv">
+                    <div class="currentDay">
+                         <img alt="Icon"></img>
+                         <h4>
+                              City Name, State Country
+                         </h4>
+                         <h3>
+                              Date
+                         </h3>
+                         <ul>
+                              <li id="currentTemp">
+                                   Most recent recorded temperature:
+                              </li>
+                              <li id="currentHumidity">
+                                   Humidity:
+                              </li>
+                         </ul>
+                    </div>
+               </section>
 
-    </main>
+               <!-- COMMENT: 5-day Weather Forecast Section-->
+               <section class="forecastCards">
 
-    <!-- COMMENT: Footer -->
-    <footer>
-        footer
-    </footer>
+                    <!-- COMMENT: Individual Forecast Cards -->
+                    <div class="dayForecast" id="day1">
+                         <img alt="Icon" id="img1"></img>
+                         <h3 id="date1">
+                              Date
+                         </h3>
+                         <ul>
+                              <li id="temp1">
+                                   Most recent recorded temperature:
+                              </li>
+                              <li id="humidity1">
+                                   Humidity:
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="dayForecast" id="day2">
+                         <img alt="Icon" id="img2"></img>
+                         <h3 id="date2">
+                              Date
+                         </h3>
+                         <ul>
+                              <li id="temp2">
+                                   Most recent recorded temperature:
+                              </li>
+                              <li id="humidity2">
+                                   Humidity:
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="dayForecast" id="day3">
+                         <img alt="Icon" id="img3"></img>
+                         <h3 id="date3">
+                              Date
+                         </h3>
+                         <ul>
+                              <li id="temp3">
+                                   Most recent recorded temperature:
+                              </li>
+                              <li id="humidity3">
+                                   Humidity:
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="dayForecast" id="day4">
+                         <img alt="Icon" id="img4"></img>
+                         <h3 id="date4">
+                              Date
+                         </h3>
+                         <ul>
+                              <li id="temp4">
+                                   Most recent recorded temperature:
+                              </li>
+                              <li id="humidity4">
+                                   Humidity:
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="dayForecast" id="day5">
+                         <img alt="Icon" id="img5"></img>
+                         <h3 id="date5">
+                              Date
+                         </h3>
+                         <ul>
+                              <li id="temp5">
+                                   Most recent recorded temperature:
+                              </li>
+                              <li id="humidity5">
+                                   Humidity:
+                              </li>
+                         </ul>
+                    </div>
 
-    <!-- COMMENT: JS Scripts -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+               </section>
+          </section>
+     </main>
+
+     <!-- COMMENT: Footer -->
+     <footer>
+          footer
+     </footer>
+
+     <!-- COMMENT: JS Scripts -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
