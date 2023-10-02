@@ -99,7 +99,7 @@ $("form").on("submit", function (event) {
                               console.log("5th day " + forecastedWeather.list[38].dt);
                               var j = 1;
                               for (var i = 5; i < forecastedWeather.list.length; i += 8) {
-                                   // if array is returned with 40 values, need to test if forecast's array changes this during the earlier hours, provided more forecasted data
+                                   // TODO: if array is returned with 40 values, need to test if forecast's array changes this during the earlier hours, provided more forecasted data
                                    let forecastDate = forecastedWeather.list[i].dt;
                                    console.log(forecastDate);
                                    let temp = forecastedWeather.list[i].main.temp;
@@ -111,7 +111,6 @@ $("form").on("submit", function (event) {
                                    $("#humidity" + j).text("Humidity: " + humidity + " %");
                                    j++;
                               }
-                              //
                          });
                }
           });
