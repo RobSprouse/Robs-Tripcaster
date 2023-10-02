@@ -1,6 +1,30 @@
-// COMMENT: Hide displayed weather data
 $(document).ready(function () {
+     // COMMENT: Hides the empty divs
      $("#invalidEntry, .currentDayDiv, .forecastCards").hide();
+     let cityList = $(".cityHistory");
+     Object.keys(localStorage).forEach(function (key) {
+          let getKey = localStorage.getItem(key);
+          let list = $("<p></p>");
+          list.text(getKey);
+          cityList.append(list);
+     });
+
+     $("form").on("submit", function (event) {
+          event.preventDefault();
+          $("#invalidEntry").text(""); // clears error text
+          let cityName = $("#cityName").val(); // user input defines the search for lat and lon
+          if (!cityName.trim()) {
+               $("#invalidEntry").show();
+               $("#invalidEntry").text("Please follow the instructions and enter a city name.");
+               return;
+          }
+          getWeather(cityName);
+     });
+
+     $(".cityHistory").on("click", "p", function () {
+          let cityName = $(this).text();
+          getWeather(cityName);
+     });
 });
 
 // COMMENT: Define apiKey
@@ -14,15 +38,8 @@ let unixToDate = function (unixTime) {
 };
 
 // COMMENT: Event listener for submit
-$("form").on("submit", function (event) {
-     event.preventDefault();
+function getWeather(cityName) {
      $("#invalidEntry").text(""); // clears error text
-     let cityName = $("#cityName").val(); // user input defines the search for lat and lon
-     if (!cityName.trim()) {
-          $("#invalidEntry").show();
-          $("#invalidEntry").text("Please follow the instructions and enter a city name.");
-          return;
-     }
      let getLatLonURL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`; // api to get lat and lon
      fetch(getLatLonURL) // fetches lon and lat
           .then((response) => {
@@ -44,6 +61,13 @@ $("form").on("submit", function (event) {
                     console.log(cityData);
                     let city = cityData[0];
                     let cityNameStateCountry = `${city.name}${city.state ? ", " + city.state : ""} ${city.country}`;
+                    let key = `${city.lat}, ${city.lon}`;
+                    let storedKeys = Object.keys(localStorage);
+                    if (!storedKeys.includes(key)) {
+                         let addHistory = $("<p>").text(cityNameStateCountry);
+                         $(".cityHistory").append(addHistory);
+                         localStorage.setItem(key, cityNameStateCountry);
+                    }
                     let getCurrentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
                     console.log(getCurrentWeatherURL);
                     let getForecastedWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
@@ -114,5 +138,4 @@ $("form").on("submit", function (event) {
                          });
                }
           });
-});
-
+}
