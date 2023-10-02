@@ -93,6 +93,20 @@ header ul {
 }
 
 
+/* COMMENT: Search History */
+.cityHistory p {
+     margin: 0 0 0.5em 0;
+     padding:   1em 0.3em 0em 0.3em;
+     cursor: pointer;
+     display: flex;
+     flex-direction: column;
+     flex: 0 0 auto;
+     justify-content: center;     
+     align-items: center;
+     text-decoration: underline;
+     color: blue;
+}
+
 /* COMMENT: Main Section */
 main {
      display: flex;
