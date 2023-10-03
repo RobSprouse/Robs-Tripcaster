@@ -71,7 +71,6 @@ function getWeather(cityName) {
                     );
                } else {
                     // COMMENT: Defines variables for the storage and fetching of weather data
-                    console.log(cityData)
                     let city = cityData[0]; // assigns data to a variable to easily grab it's objects
                     let cityNameStateCountry = `${city.name}${city.state ? ", " + city.state : ""} ${city.country}`; // grabs the api's defined value for each to assign it to the value of the key/value pair in storage, helps prevent errors from user input
                     let key = `${city.lat}, ${city.lon}`; // defines what the key will be in storage
