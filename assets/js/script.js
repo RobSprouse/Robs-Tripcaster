@@ -90,12 +90,14 @@ function getWeather(cityName) {
                               let recordedWeatherTime = currentWeather.dt;
                               let currentTemp = currentWeather.main.temp;
                               let currentHumidity = currentWeather.main.humidity;
+                              let currentWindSpeed = currentWeather.wind.speed;
                               let weatherIcon = `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`;
                               $(".currentDay img").attr("src", weatherIcon);
                               $(".currentDay h4").text(cityNameStateCountry);
                               $(".currentDay h3").text(unixToDate(recordedWeatherTime));
                               $("#currentTemp").html("Temperature: " + currentTemp + " &deg;F");
                               $("#currentHumidity").text("Humidity: " + currentHumidity + " %");
+                              $("#currentWindSpeed").text("Wind Speed " + currentWindSpeed + " Mph");
                               $(".currentDayDiv, .forecastCards").show();
                          });
 
@@ -129,10 +131,13 @@ function getWeather(cityName) {
                                    let temp = forecastedWeather.list[i].main.temp;
                                    let humidity = forecastedWeather.list[i].main.humidity;
                                    let weatherIcon = `https://openweathermap.org/img/wn/${forecastedWeather.list[i].weather[0].icon}@2x.png`;
+                                   let windSpeed = forecastedWeather.list[i].wind.speed
+                                   console.log(windSpeed);
                                    $("#date" + j).text(unixToDate(forecastDate));
                                    $("#img" + j).attr("src", weatherIcon);
                                    $("#temp" + j).html("Temperature: " + temp + " &deg;F");
                                    $("#humidity" + j).text("Humidity: " + humidity + " %");
+                                   $("#windSpeed" + j).text("Wind Speed " + windSpeed + " Mph");
                                    j++;
                               }
                          });
