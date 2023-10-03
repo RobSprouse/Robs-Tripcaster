@@ -1,19 +1,22 @@
+// COMMENT: Document ready function
 $(document).ready(function () {
-     // COMMENT: Hides the empty divs
-     $("#invalidEntry, .currentDayDiv, .forecastCards").hide();
+     $("#invalidEntry, .currentDayDiv, .forecastCards").hide(); // hides the empty divs
      let cityList = $(".cityHistory");
      Object.keys(localStorage).forEach(function (key) {
+          // displays the locally stored locations
           let getKey = localStorage.getItem(key);
           let list = $("<p></p>");
           list.text(getKey);
           cityList.append(list);
      });
 
+     // COMMENT: event listener for submit
      $("form").on("submit", function (event) {
           event.preventDefault();
           $("#invalidEntry").text(""); // clears error text
           let cityName = $("#cityName").val(); // user input defines the search for lat and lon
           if (!cityName.trim()) {
+               // if it's empty, display text
                $("#invalidEntry").show();
                $("#invalidEntry").text("Please follow the instructions and enter a city name.");
                return;
@@ -21,23 +24,24 @@ $(document).ready(function () {
           getWeather(cityName);
      });
 
+     // COMMENT: event listener for search history
      $(".cityHistory").on("click", "p", function () {
           let cityName = $(this).text();
           getWeather(cityName);
      });
 });
 
-// COMMENT: Define apiKey
-let apiKey = "ae8a9c52dbc61de25a46b1c84484bee2";
+// COMMENT: Defines api key and unix time converter function expression
+const apiKey = "ae8a9c52dbc61de25a46b1c84484bee2";
 
 let unixToDate = function (unixTime) {
-     var jsDate = new Date(unixTime * 1000);
-     var options = { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" };
-     var formattedDate = jsDate.toLocaleDateString("en-US", options);
-     return formattedDate;
+     let jsDate = new Date(unixTime * 1000); // converts unix to js time
+     let options = { year: "numeric", month: "long", day: "numeric" }; // options for new date format
+     let formattedDate = jsDate.toLocaleDateString("en-US", options); // formats date
+     return formattedDate; // returns the value
 };
 
-// COMMENT: Event listener for submit
+// COMMENT: Declares the function get weather which gets the lat and lon for a city, and uses that to get current and forecaster weather
 function getWeather(cityName) {
      $("#invalidEntry").text(""); // clears error text
      let getLatLonURL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`; // api to get lat and lon
@@ -52,32 +56,33 @@ function getWeather(cityName) {
           })
           .then((cityData) => {
                if (cityData.length === 0) {
-                    // COMMENT: Append text if there is a problem with user input
+                    // if there is no city data returned from the api, display why
                     $("#invalidEntry").show();
                     $("#invalidEntry").text(
                          "The weather data for the city you're searching for is not in the database of available cities, the input format was incorrect, is spelled incorrectly, or is not a valid city. Please, try again."
                     );
                } else {
-                    console.log(cityData);
-                    let city = cityData[0];
-                    let cityNameStateCountry = `${city.name}${city.state ? ", " + city.state : ""} ${city.country}`;
-                    let key = `${city.lat}, ${city.lon}`;
-                    let storedKeys = Object.keys(localStorage);
+                    // COMMENT: Defines variables for the storage and fetching of weather data
+                    let city = cityData[0]; // assigns data to a variable to easily grab it's objects
+                    let cityNameStateCountry = `${city.name}${city.state ? ", " + city.state : ""} ${city.country}`; // grabs the api's defined value for each to assign it to the value of the key/value pair in storage, helps prevent errors from user input
+                    let key = `${city.lat}, ${city.lon}`; // defines what the key will be in storage
+                    let storedKeys = Object.keys(localStorage); // defines what the stored keys will be then checks if the most recent keys are already in storage or not, appends based on if statement
                     if (!storedKeys.includes(key)) {
                          let addHistory = $("<p>").text(cityNameStateCountry);
                          $(".cityHistory").append(addHistory);
-                         localStorage.setItem(key, cityNameStateCountry);
+                         localStorage.setItem(key, cityNameStateCountry); // stores the key/value pair [lat, lon/cityName, state, country] in local storage
                     }
-                    let getCurrentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
+                    let getCurrentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`; // current weather fetch URL
                     console.log(getCurrentWeatherURL);
-                    let getForecastedWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`;
+                    let getForecastedWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`; // forecasted weather fetch URL
                     console.log(getForecastedWeatherURL);
 
+                    // COMMENT: Fetches current weather
                     fetch(getCurrentWeatherURL)
                          .then((response) => {
                               if (!response.ok) {
+                                   // checks for errors and if the api isn't working, display's text
                                    throw new Error("HTTP error " + response.status);
-                                   // COMMENT: Append text if there was a failed response.
                                    $("#invalidEntry").show();
                                    $("#invalidEntry").text(
                                         "The response from the weather api failed. Please try again."
@@ -131,7 +136,7 @@ function getWeather(cityName) {
                                    let temp = forecastedWeather.list[i].main.temp;
                                    let humidity = forecastedWeather.list[i].main.humidity;
                                    let weatherIcon = `https://openweathermap.org/img/wn/${forecastedWeather.list[i].weather[0].icon}@2x.png`;
-                                   let windSpeed = forecastedWeather.list[i].wind.speed
+                                   let windSpeed = forecastedWeather.list[i].wind.speed;
                                    console.log(windSpeed);
                                    $("#date" + j).text(unixToDate(forecastDate));
                                    $("#img" + j).attr("src", weatherIcon);
