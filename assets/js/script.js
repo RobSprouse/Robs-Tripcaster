@@ -119,18 +119,8 @@ function getWeather(cityName) {
                               return response.json();
                          })
                          .then((forecastedWeather) => {
-                              console.log(forecastedWeather);
-                              // console.log(forecastedWeather.list[6].weather[0].icon)
-                              console.log("1st day " + forecastedWeather.list[6].dt);
-                              // console.log(forecastedWeather.list[6].main.temp);
-                              // console.log(forecastedWeather.list[6].main.humidity);
-                              console.log("2nd day " + forecastedWeather.list[14].dt);
-                              console.log("3rd day " + forecastedWeather.list[22].dt);
-                              console.log("4th day " + forecastedWeather.list[30].dt);
-                              console.log("5th day " + forecastedWeather.list[38].dt);
                               var j = 1;
                               for (var i = 5; i < forecastedWeather.list.length; i += 8) {
-                                   // TODO: if array is returned with 40 values, need to test if forecast's array changes this during the earlier hours, provided more forecasted data
                                    let forecastDate = forecastedWeather.list[i].dt;
                                    console.log(forecastDate);
                                    let temp = forecastedWeather.list[i].main.temp;
