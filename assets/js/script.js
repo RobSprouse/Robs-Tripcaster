@@ -70,7 +70,6 @@ function getWeather(cityName) {
                          "The weather data for the city you're searching for is not in the database of available cities, the input format was incorrect, is spelled incorrectly, or is not a valid city. Please, try again."
                     );
                } else {
-                    console.log(cityData);
                     // COMMENT: Defines variables for the storage and fetching of weather data
                     let city = cityData[0]; // assigns data to a variable to easily grab it's objects
                     let cityNameStateCountry = `${city.name}${city.state ? ", " + city.state : ""} ${city.country}`; // grabs the api's defined value for each to assign it to the value of the key/value pair in storage, helps prevent errors from user input
