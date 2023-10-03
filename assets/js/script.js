@@ -47,6 +47,7 @@ function getWeather(cityName) {
      let getLatLonURL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`; // api to get lat and lon
      fetch(getLatLonURL) // fetches lon and lat
           .then((response) => {
+               // checks for errors and if the api isn't working, display's text
                if (!response.ok) {
                     $("#invalidEntry").show();
                     $("#invalidEntry").text("The response from the weather api failed. Please try again.");
@@ -73,9 +74,7 @@ function getWeather(cityName) {
                          localStorage.setItem(key, cityNameStateCountry); // stores the key/value pair [lat, lon/cityName, state, country] in local storage
                     }
                     let getCurrentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`; // current weather fetch URL
-                    console.log(getCurrentWeatherURL);
                     let getForecastedWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=imperial`; // forecasted weather fetch URL
-                    console.log(getForecastedWeatherURL);
 
                     // COMMENT: Fetches current weather
                     fetch(getCurrentWeatherURL)
@@ -91,26 +90,27 @@ function getWeather(cityName) {
                               return response.json();
                          })
                          .then((currentWeather) => {
-                              console.log(currentWeather);
+                              // COMMENT: Defines the variables that will be pulled from the response and displays them
                               let recordedWeatherTime = currentWeather.dt;
                               let currentTemp = currentWeather.main.temp;
                               let currentHumidity = currentWeather.main.humidity;
                               let currentWindSpeed = currentWeather.wind.speed;
-                              let weatherIcon = `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`;
+                              let weatherIcon = `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`; // uses the icon from openweathermap.org api
                               $(".currentDay img").attr("src", weatherIcon);
                               $(".currentDay h4").text(cityNameStateCountry);
-                              $(".currentDay h3").text(unixToDate(recordedWeatherTime));
+                              $(".currentDay h3").text(unixToDate(recordedWeatherTime)); // unixToDate formats the grabbed date to the local date
                               $("#currentTemp").html("Temperature: " + currentTemp + " &deg;F");
                               $("#currentHumidity").text("Humidity: " + currentHumidity + " %");
                               $("#currentWindSpeed").text("Wind Speed " + currentWindSpeed + " Mph");
                               $(".currentDayDiv, .forecastCards").show();
                          });
 
+                    // COMMENT: fetches the forecast
                     fetch(getForecastedWeatherURL)
                          .then((response) => {
                               if (!response.ok) {
+                                   // checks for errors and if the api isn't working, display's text
                                    throw new Error("HTTP error " + response.status);
-                                   // COMMENT: Append text if there was a failed response.
                                    $("#invalidEntry").show();
                                    $("#invalidEntry").text(
                                         "The response from the weather api failed. Please try again."
@@ -119,16 +119,15 @@ function getWeather(cityName) {
                               return response.json();
                          })
                          .then((forecastedWeather) => {
+                              // COMMENT: Defines the variables that will be pulled from the response and displays them
                               var j = 1;
                               for (var i = 5; i < forecastedWeather.list.length; i += 8) {
                                    let forecastDate = forecastedWeather.list[i].dt;
-                                   console.log(forecastDate);
                                    let temp = forecastedWeather.list[i].main.temp;
                                    let humidity = forecastedWeather.list[i].main.humidity;
-                                   let weatherIcon = `https://openweathermap.org/img/wn/${forecastedWeather.list[i].weather[0].icon}@2x.png`;
+                                   let weatherIcon = `https://openweathermap.org/img/wn/${forecastedWeather.list[i].weather[0].icon}@2x.png`; // uses the icon from openweathermap.org api
                                    let windSpeed = forecastedWeather.list[i].wind.speed;
-                                   console.log(windSpeed);
-                                   $("#date" + j).text(unixToDate(forecastDate));
+                                   $("#date" + j).text(unixToDate(forecastDate)); // unixToDate formats the grabbed date to the local date
                                    $("#img" + j).attr("src", weatherIcon);
                                    $("#temp" + j).html("Temperature: " + temp + " &deg;F");
                                    $("#humidity" + j).text("Humidity: " + humidity + " %");
